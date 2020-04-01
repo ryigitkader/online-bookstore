@@ -1,5 +1,6 @@
 package com.yigitkader.onlinebookstore;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,7 +11,6 @@ public class OnlinebookstoreApplication {
 		SpringApplication.run(OnlinebookstoreApplication.class, args);
 
 
-		
 	}
 
 }
