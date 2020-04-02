@@ -41,7 +41,7 @@ public class Book {
     @Column(name = "units_in_stock")
     private int unitsInStock;
 
-    @Column(name = "data_created")
+    @Column(name = "date_created")
     private Date createdOn;
 
     @Column(name = "last_updated")
@@ -51,7 +51,7 @@ public class Book {
     //Relational Entities Entegration
     @ManyToOne
     @JoinColumn(name = "category_id",nullable = false)
-    private BookCategory bookCategory;
+    private BookCategory category;
 
 
 
