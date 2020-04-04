@@ -32,3 +32,4 @@ build/
 
 
 /onlinebookstore/target
+/angular-bookstore/node_modules/

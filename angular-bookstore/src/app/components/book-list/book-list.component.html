@@ -1,4 +1,4 @@
-<table border="1">
+<table class="table">
 
     <thead>
         <tr>
@@ -12,12 +12,13 @@
         <tr *ngFor="let book of books">
             <td>
             <!-- Create blank images -->
-            <img src="http://placehold.it/250x300" height="50" />  
+            <img [src]="book.imageUrl" height="50" />  
             </td>  
             <td>{{book.name}}</td>
             <td>{{book.description}}</td>
             <td>{{book.unitPrice | currency:'USD'}}</td>
         </tr>
+        
         
     </tbody>
 </table>
