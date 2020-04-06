@@ -19,8 +19,10 @@ public class RepositoryConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
-//        config.exposeIdsFor(Book.class);
-//        config.exposeIdsFor(BookCategory.class);
+        /*
+        config.exposeIdsFor(Book.class);
+        config.exposeIdsFor(BookCategory.class);
+        */
 
         //Bring entity's ids on json automaticly
         config.exposeIdsFor(entityManager
@@ -28,5 +30,11 @@ public class RepositoryConfig implements RepositoryRestConfigurer {
                 .getEntities()
                 .stream()
                 .map(Type::getJavaType).toArray(Class[]::new));
+
+        //Automaticly giving permission for the requests
+        config.getCorsRegistry()
+                .addMapping("/**")
+                .allowedOrigins("http://localhost:8081");
+
     }
 }

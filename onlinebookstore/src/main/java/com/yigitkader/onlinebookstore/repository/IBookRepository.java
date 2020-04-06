@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
-@CrossOrigin("http://localhost:8081") //permisson for get request to angular | ('*' is give permission for any request)
+
 public interface IBookRepository extends JpaRepository<Book,Long> {
 
 
