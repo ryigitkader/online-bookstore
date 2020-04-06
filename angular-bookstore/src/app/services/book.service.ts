@@ -15,9 +15,10 @@ export class BookService {
   ) { }
 
 
-  getBooks():Observable<Book[]>{
+  getBooks(categoryId:number):Observable<Book[]>{
 
-    return this.httpClient.get<GetResponseBooks>(this.baseUrl).pipe(
+    const searchUrl = this.baseUrl+'/search/categoryid?id='+categoryId;
+    return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(
 
       map(response => response._embedded.books)
  
