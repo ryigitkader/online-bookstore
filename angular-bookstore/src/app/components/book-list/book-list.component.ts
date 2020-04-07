@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/common/book';
 import { BookService } from 'src/app/services/book.service';
 import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from 'src/app/services/alertify.service';
+
 
 @Component({
   selector: 'app-book-list',
@@ -13,7 +15,8 @@ export class BookListComponent implements OnInit {
 
   constructor(
     private bookService:BookService,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private alertifyService:AlertifyService
 
   ) { }
 
@@ -73,6 +76,12 @@ export class BookListComponent implements OnInit {
       data => this.books = data
     );
 
+  }
+
+  addToCart(book){
+    
+    this.alertifyService.success(book.name + " added to cart");
+    
   }
 
 

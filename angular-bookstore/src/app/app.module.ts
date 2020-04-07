@@ -9,7 +9,7 @@ import { BookService } from './services/book.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BookCategoryComponent } from './components/book-category/book-category.component';
 import { SearchComponent } from './components/search/search.component';
-import { AlertifyjsService } from './services/alertifyjs.service';
+
 
 
 const routes:Routes = [
