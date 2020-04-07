@@ -8,50 +8,61 @@ import { BookCategory } from '../common/book-category';
 @Injectable()
 export class BookService {
 
-  private baseUrl="http://localhost:8080/api/v1/books";
-  private categoryUrl="http://localhost:8080/api/v1/book-category";
+  private baseUrl = "http://localhost:8080/api/v1/books";
+  private categoryUrl = "http://localhost:8080/api/v1/book-category";
 
 
   constructor(
-    private httpClient:HttpClient
+    private httpClient: HttpClient
 
   ) { }
 
 
-  getBooks(categoryId:number):Observable<Book[]>{
+  private getBooksList(searchUrl: string): Observable<Book[]> {
+    return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(map(response => response._embedded.books));
+  }
 
-    const searchUrl = this.baseUrl+'/search/categoryid?id='+categoryId;
-    return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(
+  getBooks(categoryId: number): Observable<Book[]> {
 
-      map(response => response._embedded.books)
- 
-    );
+    const searchUrl = this.baseUrl + '/search/categoryid?id=' + categoryId;
+    return this.getBooksList(searchUrl);
   }
 
 
-  getBookCategories():Observable<BookCategory[]>{
+  searchBooks(keyword: string): Observable<Book[]> {
 
+    const searchUrl = this.baseUrl + '/search/searchbykeyword?name=' + keyword;
+    return this.getBooksList(searchUrl);
+  }
+
+
+  getBookCategories(): Observable<BookCategory[]> {
 
     return this.httpClient.get<GetResponseBooksCategory>(this.categoryUrl).pipe(
-
+      
       map(response => response._embedded.bookCategory)
- 
     );
 
   }
+
+
+
 
 }
 
 
-interface GetResponseBooks{
-  _embedded:{
+
+
+
+interface GetResponseBooks {
+  _embedded: {
     books: Book[];
   }
 }
 
 
-interface GetResponseBooksCategory{
-  _embedded:{
+interface GetResponseBooksCategory {
+  _embedded: {
     bookCategory: BookCategory[];
   }
 }

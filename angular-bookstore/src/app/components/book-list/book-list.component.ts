@@ -19,6 +19,7 @@ export class BookListComponent implements OnInit {
 
   books:Book[] ;
   currentCategoryId:number;
+  searchMode:boolean;
 
   ngOnInit(): void {
 
@@ -33,6 +34,24 @@ export class BookListComponent implements OnInit {
   listBooks(){
 
 
+    this.searchMode = this.activatedRoute.snapshot.paramMap.has('keyword');
+
+    if(this.searchMode){
+      this.handleSearchBooks();
+    }else{
+      this.handleListBooks();
+    }
+
+    
+
+  }
+
+
+
+
+  handleListBooks(){
+
+
     const hasCategoryId:boolean = this.activatedRoute.snapshot.paramMap.has('id');
 
     if(hasCategoryId){
@@ -44,6 +63,16 @@ export class BookListComponent implements OnInit {
     this.bookService.getBooks(this.currentCategoryId).subscribe(
       data => this.books = data
     )
+
+  }
+
+  handleSearchBooks(){
+
+    const keyword:string = this.activatedRoute.snapshot.paramMap.get('keyword');
+    this.bookService.searchBooks(keyword).subscribe(
+      data => this.books = data
+    );
+
   }
 
 

@@ -25,6 +25,10 @@
 
             </div>
         </div>
+        <div *ngIf="books?.length == 0 " class="alert alert-warning">
+            Aradığınız içerik bulunamadı
+            <!-- No books found-->
+        </div>
 
 
     </div>
